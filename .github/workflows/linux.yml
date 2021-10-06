@@ -15,15 +15,15 @@ jobs:
   build:
     runs-on: ubuntu-20.04
 
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with: 
-        submodules: recursive
-    - name: Get latest commit and unzip
-      shell: bash
-      run: wget https://github.com/vikiminki/linux/archive/${{github.event.inputs.commit}}.zip
-      run: unzip ${{github.event.inputs.commit}}.zip
-    - name: Build previously downloaded version
-      shell: bash 
-      run: ./build-linux.sh ${{github.event.inputs.commit}} tinyconfig 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with: 
+          submodules: recursive
+      - name: Get latest commit and unzip
+        shell: bash
+        run: wget https://github.com/vikiminki/linux/archive/${{github.event.inputs.commit}}.zip
+        run: unzip ${{github.event.inputs.commit}}.zip
+      - name: Build previously downloaded version
+        shell: bash 
+        run: ./build-linux.sh ${{github.event.inputs.commit}} tinyconfig 
