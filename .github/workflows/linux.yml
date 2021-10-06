@@ -3,8 +3,9 @@ name: Build kernel
 on: 
   workflow_dispatch:
     inputs:
-      name: commit
-      required: true
+      commit: 
+        description: 'Yo'
+        required: true
                                 
 
 env:
