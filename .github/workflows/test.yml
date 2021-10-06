@@ -1,0 +1,22 @@
+name: test
+
+on: [push, workflow_dispatch]
+
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with: 
+        submodules: recursive
+    - name: Make test
+      shell: bash 
+      run:
+           cd test
+           make test 
