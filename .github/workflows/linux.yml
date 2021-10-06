@@ -1,0 +1,28 @@
+name: Build kernel
+
+on: 
+  workflow_dispatch:
+
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with: 
+        submodules: recursive
+    - name: Get latest commit and unzip
+      shell: bash
+      run:
+        wget https://github.com/vikiminki/linux/archive/{$GITHUB_SHA}.zip
+      run:
+        unzip {$GITHUB_SHA}.zip
+    - name: Build previously downloaded version
+      shell: bash 
+      run: 
+        ./build-linux.sh {$GITHUB_SHA} tinyconfig 
